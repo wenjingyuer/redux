@@ -67,8 +67,10 @@ export default function applyMiddleware(
       dispatch: (action, ...args) => dispatch(action, ...args)
     }
     const chain = middlewares.map(middleware => middleware(middlewareAPI))
-    dispatch = compose<typeof dispatch>(...chain)(store.dispatch)
+    // store.dispatch 是作为最后一个执行函数的 next ：最右边那个
 
+    //中间件执行顺序从左到右，洋葱模型。 所以在最左边的函数执行完next 后，所有 state 即更新完毕
+    dispatch = compose<typeof dispatch>(...chain)(store.dispatch)
     return {
       ...store,
       dispatch

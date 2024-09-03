@@ -10,6 +10,7 @@ type Func<T extends any[], R> = (...a: T) => R
  *   to left. For example, `compose(f, g, h)` is identical to doing
  *   `(...args) => f(g(h(...args)))`.
  */
+
 export default function compose(): <R>(a: R) => R
 
 export default function compose<F extends Function>(f: F): F

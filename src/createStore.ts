@@ -93,6 +93,7 @@ export function createStore<
   preloadedState?: PreloadedState | undefined,
   enhancer?: StoreEnhancer<Ext, StateExt>
 ): Store<S, A, UnknownIfNonSpecific<StateExt>> & NoInfer<Ext>
+
 export function createStore<
   S,
   A extends Action,
