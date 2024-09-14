@@ -518,7 +518,8 @@ logger1 结束
 
 从 dispach 触发后的日志上也可以看出这是一个经典的洋葱模型设计， Koa、Express 框架的中间件功能也使用了这个设计模式。
 
-![20240902141732](https://raw.gitmirror.com/wenjingyuer/image_store/master/images/20240902141732.png)
+![20240914181820](https://raw.gitmirror.com/wenjingyuer/image_store/master/images/20240914181820.png)
+
 
 ### bindActionCreators
 
