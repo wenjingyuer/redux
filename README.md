@@ -16,9 +16,18 @@ View 层触发 Actions 事件，交给 Dispacher（本质上是注册到 Store �
 
 这种设计的好处是其数据是单一方向流动的，数据的修改一定会经过 Actions、Dispacher 动作，这使得对数据的修改变得可预测、可溯源。
 
-## 源码结构解析
+基于此，Redux 中数据更新的设计架构如下：
 
-Redux 核心代码文件有 5 个：applyMiddleware、bindActionCreators、combineReducers、compose、createStore。对应实现的功能如下：
+![20240914172423](https://raw.gitmirror.com/wenjingyuer/image_store/master/images/20240914172423.png)
+
+
+### 源码结构解析
+
+与上图中 Redux 的设计架构相对应，在源码中
+
+- createStore 负责实现 Store 核心功能，创建 State、串联触发 action 到更新 state 的整体逻辑。
+- applyMiddleware、compose 实现 middleware 相关逻辑
+- combineReducers 实现组合多个 reducer
 
 ```shell
 redux/src
@@ -541,7 +550,7 @@ mapDispatchToProps =((dispatch)=>{
 }
 ```
 
-bindActionCreators 的实现也非常简单，核心逻辑就是给每个 actioncreator 返回一个与 dispach 绑定的执行函数，该函数执行后，会自动 dispach 对应的 action。
+bindActionCreators 的核心实现逻辑是给每个 actionCreator 返回一个与 dispach 绑定的执行函数，该函数执行后，会自动 dispach 对应的 action。
 
 ```JS
 export default function bindActionCreators(
@@ -574,3 +583,5 @@ function bindActionCreator<A extends Action>(
 }
 
 ```
+
+
